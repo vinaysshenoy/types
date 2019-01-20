@@ -1,0 +1,37 @@
+group 'com.vinaysshenoy'
+version '1.0.0'
+
+buildscript {
+  ext.junit_version = '4.12'
+  ext.assertj_version = '3.11.1'
+  ext.jsr305_version = '3.0.2'
+
+  repositories {
+    mavenCentral()
+  }
+}
+
+apply plugin: 'java-library'
+
+java {
+  sourceCompatibility JavaVersion.VERSION_1_8
+  targetCompatibility JavaVersion.VERSION_1_8
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation "com.google.code.findbugs:jsr305:$jsr305_version"
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "org.assertj:assertj-core:$assertj_version"
+}
+
+test {
+  testLogging {
+    showStandardStreams = true
+    exceptionFormat = "full"
+    events = ["passed", "skipped", "failed", "standard_out", "standard_error"]
+  }
+}
